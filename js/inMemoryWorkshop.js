@@ -16,7 +16,7 @@ function getWorkshopByName(name) {
         if (!name) {
             reject(new Error("name parameter is required"))
         }
-        resolve(inMemoryWorkshop.find(workshop => workshop.name === workshop))
+        resolve(inMemoryWorkshop.find(workshop => workshop.name === name))
     })
 }
 
@@ -42,9 +42,12 @@ function removeWorkshopByName(name) {
     })
 }
 
-function updateWorkshop(name, description) {
-    return new Promise((resolve, reject) => {
-        reject(new Error("Not implemented"))
+function updateWorkshop(name, description, oldname) {
+    return new Promise((resolve,) => {
+        let workshop = inMemoryWorkshop.find(workshop => workshop.name === oldname)
+        workshop.name=name;
+        workshop.description=description;
+        resolve();
     })
 }
 

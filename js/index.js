@@ -49,22 +49,35 @@ repository.init().then(() => {
         const workshopName = req.params.name
         repository.getWorkshopByName(workshopName)
         .then(workshop => {
-            res.render('ejs/workshop', workshop)
+            res.render('modify', {
+                workshop: workshop
+            })
         })
         .catch(e =>ejs.send(e.message))
     })
     
     app.post('/remove-workshop', function (req, res) {
-        res.status(500).send("TODO")
+
     })
     
     app.post('/update-workshop', function(req, res) {
-        res.status(500).send("TODO")
+        const name = req.body.name
+        const description = req.body.description
+        const oldname = req.body.oldname
+        repository.updateWorkshop(name, description, oldname).then(() => {
+            repository.getWorkshopList()
+            .then(workshops => {
+                res.render("index", {
+                    workshops: workshops
+                })
+            })
+        })
+        .catch(e =>res.send(e.message))
     })
     
     app.listen(3000, function () {
       console.log('Workshop app listening on port 3000!')
     })
     
-})
+});
 
