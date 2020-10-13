@@ -10,5 +10,6 @@ Tâche 2 : Modifier index.ejs
     - Chaque bouton renvoie une requête GET sur /workshop/:name avec name qui est le nom de Workshop
 
 Tâche 3 : Modifier index.js
+    - Implémenter la fonction updateWorkshop dans inMemoryWorkshop.js
     - Modifier le GET sur /workshop/:name pour qu'il affiche modify.ejs
     - Enregistrer les modifications reçues par le POST sur /update-worshop dans le repository
