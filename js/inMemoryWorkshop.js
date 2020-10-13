@@ -37,8 +37,13 @@ function addWorkshop(name, description) {
 }
 
 function removeWorkshopByName(name) {
-    return new Promise((resolve, reject) => {
-        reject(new Error("Not implemented"))
+    return new Promise((resolve) => {
+        let workshop = inMemoryWorkshop.find(workshop => workshop.name === name);
+        var index = inMemoryWorkshop.findIndex(function(o){
+            return o.name === workshop.name;
+        })
+        if (index !== -1) inMemoryWorkshop.splice(index, 1);
+        resolve();
     })
 }
 

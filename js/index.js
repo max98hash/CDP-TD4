@@ -56,8 +56,18 @@ repository.init().then(() => {
         .catch(e =>ejs.send(e.message))
     })
     
-    app.post('/remove-workshop', function (req, res) {
-
+    app.get('/remove-workshop/:name', function (req, res) {
+        const workshopName = req.params.name;
+        repository.removeWorkshopByName(workshopName)
+        .then(() => {
+            repository.getWorkshopList()
+            .then(workshops => {
+                res.render("index", {
+                    workshops: workshops
+                })
+            })
+        })
+        .catch(e =>res.send(e.message))
     })
     
     app.post('/update-workshop', function(req, res) {
